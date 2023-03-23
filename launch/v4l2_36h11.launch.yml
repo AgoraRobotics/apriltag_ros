@@ -36,7 +36,7 @@ launch:
       name: apriltag
       namespace: apriltag
       remap:
-      - from: /apriltag/image_rect
+      - from: /camera/color/image_raw
         to: /v4l2/image_rect
       - from: /apriltag/camera_info
         to: /v4l2/camera_info
