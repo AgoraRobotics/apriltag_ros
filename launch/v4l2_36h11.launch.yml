@@ -11,11 +11,15 @@ launch:
     composable_node:
     - pkg: v4l2_camera
       plugin: v4l2_camera::V4L2Camera
-      name: camera
+      name: docking_cam
       namespace: v4l2
       param:
       - name: video_device
         value: /dev/video$(var device)
+      - name: output_encoding
+        value: yuv422_yuy2
+      - name: time_per_frame
+        value: [1, 30]
       extra_arg:
       - name: use_intra_process_comms
         value: "True"
@@ -36,8 +40,8 @@ launch:
       name: apriltag
       namespace: apriltag
       remap:
-      - from: /camera/color/image_raw
-        to: /v4l2/image_rect
+      - from: /apriltag/image_rect
+        to: /v4l2/image_raw
       - from: /apriltag/camera_info
         to: /v4l2/camera_info
       param:
